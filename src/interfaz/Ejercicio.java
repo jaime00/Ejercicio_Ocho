@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -113,15 +115,35 @@ public class Ejercicio extends javax.swing.JFrame {
          char c=evt.getKeyChar();
         if(!Character.isDigit(c)) {
             getToolkit().beep();
-            evt.consume();
+            evt.consume(); 
         }
     }//GEN-LAST:event_txtHorasKeyTyped
 
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
 
+        if(txtHoras.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Digite las cantidad de horas trabajadas","ERROR",JOptionPane.ERROR_MESSAGE);
+            txtHoras.requestFocusInWindow();
+        }else{
+            double horas=Double.parseDouble(txtHoras.getText());
+         
+            double salario=horas*20.000;
+            double dest=((salario*5)/100);
+            double total=salario-dest;
+            
+            lblDest.setText(""+dest);
+            lblMonto.setText(""+total);
+            
+        }
+
     }//GEN-LAST:event_cmdCalcularActionPerformed
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+
+        txtHoras.setText("");
+        lblDest.setText("");
+        lblMonto.setText("");
+        txtHoras.requestFocusInWindow();
 
     }//GEN-LAST:event_cmdBorrarActionPerformed
 
